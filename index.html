@@ -18,28 +18,26 @@
         <div class="container">
             <div class="slider-wrapper" tabindex="0">
                 <div class="item">
-                    <img src="img/01.webp" alt="Spiderman" />
+                    <img :src="slides[activeImage].image" :alt="slides[activeImage].alt" />
                     <div class="text">
-                        <h3>Spiderman</h3>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit
-                            tempore aliquid deleniti aut
-                            veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum
-                            corporis.
-                        </p>
+                        <h3>{{slides[activeImage].title}}</h3>
+                        <p>{{slides[activeImage].text}}</p>
                     </div>
                 </div>
                 <!-- Slider di destra -->
-                <div class="thumbs">
+                <div class="thumbs"> 
                     <div class="prev" @click="showPrev"></div>
                     <div class="next" @click="showNext"></div>
+
                     <!-- :class="index === activeImage ? 'active' : ''" cosi facendo valuto se l'indice del futuro for corrisponde al mio di default che cambia dinamicamente, allora 
                     aggiungo o meno la classe active e quindi la rendo piu o meno opaca e quindi principale, ricordando di toglere active da CLASS static-->
                     <!-- tramite v-for, ciclo tutti gli oggetti dell array e prendo solo quelli con key image -->
                     <div :class="index === activeImage ? 'active' : ''" v-for="(currentImage,index) in slides" @click="clickedImage" class="thumb">
-                        <img :src="slides[index].image" :alt="slides[index].alt" />
+                        <img :src="currentImage.image" :alt="currentImage.alt" />
                     </div>
-                    
+
+
+
                 </div>
                 <!-- /Slider di destra -->
 
