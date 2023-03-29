@@ -15,8 +15,10 @@ createApp({
   data() {
     return {
       activeImage: 0,   //setto di defaul questo mio contatore per compararlo con gli indici all interno del ciclo for x add o no active class
-      time: 1500,       // per ora lo setto a 1,5 s il timer cosi da vedere bene se funge tutto
+      time: 3000,       // per ora lo setto a 1,5 s il timer cosi da vedere bene se funge tutto
       interval: "",     //mi servirà settato vuoto per far partire l'autoplay al refresh di pagina
+      mouseHover:false,
+      mouseLeave: true,     
       slides: [
         {
           image: 'img/01.webp',
@@ -51,6 +53,9 @@ createApp({
       ]
     }
   },
+  mounted() {
+    this.startAutoplay();    //al refresh pagina grazie a MOUNTED() parte la funzione
+  },
   methods: {
     showNext() {
       if (this.activeImage < this.slides.length - 1) {
@@ -64,6 +69,14 @@ createApp({
         this.activeImage--;
       } else {
         this.activeImage = this.slides.length - 1;
+      }
+    },
+    startAutoplay() {
+      this.interval = setInterval(this.showNext, this.time);
+    },
+    mouseHover(){
+      if (this.mouseHover){
+
       }
     }
   }
