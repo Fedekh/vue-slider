@@ -16,9 +16,8 @@ createApp({
     return {
       activeImage: 0,   //setto di defaul questo mio contatore per compararlo con gli indici all interno del ciclo for x add o no active class
       time: 3000,       // per ora lo setto a 1,5 s il timer cosi da vedere bene se funge tutto
-      interval: "",     //mi servirà settato vuoto per far partire l'autoplay al refresh di pagina
-      mouseHover:false,
-      mouseLeave: true,     
+      interval: null,     //mi servirà settato vuoto per far partire l'autoplay al refresh di pagina
+      isHovering: false,     //mi servirà come flag per capire se il mouse è sopra o meno al div   
       slides: [
         {
           image: 'img/01.webp',
@@ -58,26 +57,33 @@ createApp({
   },
   methods: {
     showNext() {
+      clearInterval(this.interval);
       if (this.activeImage < this.slides.length - 1) {
         this.activeImage++;
       } else {
         this.activeImage = 0;
       }
+      this.startAutoplay();
     },
     showPrev() {
+      clearInterval(this.interval);
       if (this.activeImage > 0) {
         this.activeImage--;
       } else {
         this.activeImage = this.slides.length - 1;
       }
+      this.startAutoplay();
     },
     startAutoplay() {
       this.interval = setInterval(this.showNext, this.time);
     },
-    mouseHover(){
-      if (this.mouseHover){
-
-      }
+    mouseHover() {
+      this.isHovering = true; // impostiamo la variabile isHovering a true
+      clearInterval(this.interval); //stoppiamo l'autoplay
+    },
+    mouseLeave() {
+      this.isHovering = false; // impostiamo la variabile isHovering a false
+      this.startAutoplay();     //facciamo ripartire l'autoplay
     }
   }
 }).mount('#app')

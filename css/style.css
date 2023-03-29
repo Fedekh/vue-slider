@@ -20,6 +20,7 @@ body{
     width: 700px;
     height: 300px;
     position: relative;
+    cursor: pointer;
 }
 
 .item img {
@@ -41,6 +42,8 @@ body{
     height: 300px;
     background: #000;
     position: relative;
+    cursor: pointer;
+
 }
 
 .thumb {
