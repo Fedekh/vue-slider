@@ -31,9 +31,12 @@
                 </div>
                 <!-- Slider di destra -->
                 <div class="thumbs">
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                    <div v-for="(currentImage,index) in slides" class="thumb active">
+                    <div class="prev" @click="showPrev"></div>
+                    <div class="next" @click="showNext"></div>
+                    <!-- :class="index === activeImage ? 'active' : ''" cosi facendo valuto se l'indice del futuro for corrisponde al mio di default che cambia dinamicamente, allora 
+                    aggiungo o meno la classe active e quindi la rendo piu o meno opaca e quindi principale, ricordando di toglere active da CLASS static-->
+                    <!-- tramite v-for, ciclo tutti gli oggetti dell array e prendo solo quelli con key image -->
+                    <div :class="index === activeImage ? 'active' : ''" v-for="(currentImage,index) in slides" @click="clickedImage" class="thumb">
                         <img :src="slides[index].image" :alt="slides[index].alt" />
                     </div>
                     
