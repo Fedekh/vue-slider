@@ -32,13 +32,14 @@
                     aggiungo o meno la classe active e quindi la rendo piu o meno opaca e quindi principale, ricordando di toglere active da CLASS static-->
                     <!-- tramite v-for, ciclo tutti gli oggetti dell array e prendo solo quelli con key image -->
 
-                    <!-- OBJECT NOTAZION -->
+
+                    <!-- OBJECT NOTAZION  uguale a cio che ho scritto a riga 40 ma piu contratta-->
 
                     <!-- <div :class=" 'active': index === activeImage "  -->
                       
                     <div :class="index === activeImage ? 'active' : ''" v-for="(currentImage,index) in slides"
                         @click="clickedImage" class="thumb">
-                        <img :src="currentImage.image" :alt="currentImage.alt" />
+                        <img :src="currentImage.image" @click=" showslide(index)" :alt="currentImage.alt" />
                     </div>
 
                 </div>

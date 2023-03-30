@@ -83,7 +83,11 @@ createApp({
         } else {
           this.showNext();
         }
-      }, this.time);
+      }, this.time);  
+    },
+
+    showslide(indexToShow){
+      this.activeImage=indexToShow;
     },
   
     mouseHover() {
@@ -96,4 +100,3 @@ createApp({
   }
   
   }).mount('#app');
-
