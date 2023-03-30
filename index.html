@@ -8,7 +8,6 @@
     <title>Slider</title>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
 </head>
 
 <body>
@@ -25,22 +24,20 @@
                     </div>
                 </div>
                 <!-- Slider di destra -->
-                <div class="thumbs"> 
+                <div class="thumbs">
                     <div class="prev" @click="showPrev"></div>
                     <div class="next" @click="showNext"></div>
 
                     <!-- :class="index === activeImage ? 'active' : ''" cosi facendo valuto se l'indice del futuro for corrisponde al mio di default che cambia dinamicamente, allora 
                     aggiungo o meno la classe active e quindi la rendo piu o meno opaca e quindi principale, ricordando di toglere active da CLASS static-->
                     <!-- tramite v-for, ciclo tutti gli oggetti dell array e prendo solo quelli con key image -->
-                    <div :class="index === activeImage ? 'active' : ''" v-for="(currentImage,index) in slides" @click="clickedImage" class="thumb">
+                    <div :class="index === activeImage ? 'active' : ''" v-for="(currentImage,index) in slides"
+                        @click="clickedImage" class="thumb">
                         <img :src="currentImage.image" :alt="currentImage.alt" />
                     </div>
 
-
-
                 </div>
                 <!-- /Slider di destra -->
-
             </div>
         </div>
 

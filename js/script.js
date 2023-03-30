@@ -1,8 +1,6 @@
 /**
  * Descrizione:
     Partendo dal markup della versione svolta in js plain, rifare lo slider ma questa volta usando Vue.
-
-
     Bonus:
     1- al click su una thumb, visualizzare in grande l'immagine corrispondente
     2- applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente
@@ -17,7 +15,7 @@ createApp({
       activeImage: 0,   //setto di defaul questo mio contatore per compararlo con gli indici all interno del ciclo for x add o no active class
       time: 3000,       // per ora lo setto a 1,5 s il timer cosi da vedere bene se funge tutto
       interval: null,     //mi servirà settato vuoto per far partire l'autoplay al refresh di pagina
-      isHovering: false,     //mi servirà come flag per capire se il mouse è sopra o meno al div   
+      sensoMarcia: false,   //mi servirà come flag per capire se il mouse è sopra o meno al div   
       slides: [
         {
           image: 'img/01.webp',
@@ -53,8 +51,8 @@ createApp({
     }
   },
   mounted() {
-    this.startAutoplay();    //al refresh pagina grazie a MOUNTED() parte la funzione
-  },
+    this.startAutoplay();
+  },  
   methods: {
     showNext() {
       clearInterval(this.interval);
@@ -63,8 +61,10 @@ createApp({
       } else {
         this.activeImage = 0;
       }
+      this.sensoMarcia = false;
       this.startAutoplay();
     },
+  
     showPrev() {
       clearInterval(this.interval);
       if (this.activeImage > 0) {
@@ -72,19 +72,28 @@ createApp({
       } else {
         this.activeImage = this.slides.length - 1;
       }
+      this.sensoMarcia = true;
       this.startAutoplay();
     },
+  
     startAutoplay() {
-      this.interval = setInterval(this.showNext, this.time);
+      this.interval = setInterval(() => {
+        if (this.sensoMarcia) {
+          this.showPrev();
+        } else {
+          this.showNext();
+        }
+      }, this.time);
     },
+  
     mouseHover() {
-      this.isHovering = true; // impostiamo la variabile isHovering a true
-      clearInterval(this.interval); //stoppiamo l'autoplay
+      clearInterval(this.interval);
     },
+  
     mouseLeave() {
-      this.isHovering = false; // impostiamo la variabile isHovering a false
-      this.startAutoplay();     //facciamo ripartire l'autoplay
+      this.startAutoplay();
     }
   }
-}).mount('#app')
+  
+  }).mount('#app');
 
